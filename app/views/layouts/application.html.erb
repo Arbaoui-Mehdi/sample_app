@@ -18,8 +18,17 @@
 
       <!-- # Container -->
       <div class="container">
+
+        <!-- # Flash Message -->
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
+
         <%= yield %>
         <%= render 'layouts/footer' %>
+        <%= debug(params) if Rails.env.development? %>
       </div>
 
   </body>
