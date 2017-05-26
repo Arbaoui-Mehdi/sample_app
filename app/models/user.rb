@@ -25,7 +25,8 @@ class User < ApplicationRecord
   # Password
   has_secure_password
   validates :password,
-            length: { minimum: 6 }
+            length: { minimum: 6 },
+            allow_blank: true
 
   #
   #

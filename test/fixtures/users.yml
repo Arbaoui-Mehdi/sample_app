@@ -1,4 +1,37 @@
+#
+#
+# Users
 michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= User.digest('foobar') %>
+  admin: true
+
+john:
+  name: John Doe
+  email: jdoe@gmail.com
+  password_digest: <%= User.digest('foobar') %>
+  admin: false
+
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  password_digest: <%= User.digest('foobar') %>
+  admin: false
+
+mallory:
+  name: Mallory Archer
+  email: boss@example.gov
+  password_digest: <%= User.digest('foobar') %>
+  admin: false
+
+#
+#
+# Create 30 Users
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.org" %>
+  password_digest: <%= User.digest('foobar') %>
+  admin: false
+<% end %>

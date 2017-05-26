@@ -8,7 +8,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   def setup
     # Get User from users.yml fixtures
     @user = users(:michael)
-
   end
 
   #
