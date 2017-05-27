@@ -20,10 +20,16 @@ Rails.application.routes.draw do
 
   #
   #
-  # User Sign In
+  # Sessions
   get    'sessions/new'
   get    'login'    => 'sessions#new'   # page for a new session (login)
   post   'login'    => 'sessions#create'  # Create a new session (login)
   delete 'logout'   => 'sessions#destroy' # Delete a session (log out)
+
+  #
+  #
+  # Account Activations
+  resources :account_activations, only: [:edit]
+
 
 end

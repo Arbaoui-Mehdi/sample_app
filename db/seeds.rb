@@ -3,7 +3,9 @@ User.create!(
     email:                 'example@railstuorial.org',
     password:              'foobar',
     password_confirmation: 'foobar',
-    admin:                  true
+    admin:                  true,
+    activated:              true,
+    activated_at:           Time.zone.now
 )
 
 # Create 99 users
@@ -16,7 +18,9 @@ User.create!(
       email:                 email,
       password:              password,
       password_confirmation: password,
-      admin:                 false
+      admin:                 false,
+      activated:             true,
+      activated_at:          Time.zone.now
   )
 
 end
