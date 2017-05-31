@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
+  #
+  #
+  #
   get 'password_resets/new'
-
   get 'password_resets/edit'
+  get 'account_activations/edit'
+  get 'sessions/new'
 
   #
   #
@@ -40,5 +44,9 @@ Rails.application.routes.draw do
   get 'password_resets' => 'password_resets#new'
   resources :password_resets, only: [:new, :create, :edit, :update]
 
+  #
+  #
+  # Microposts
+  resources :microposts, only: [:create, :destroy]
 
 end

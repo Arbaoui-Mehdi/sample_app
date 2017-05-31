@@ -1,5 +1,14 @@
 class User < ApplicationRecord
 
+  #
+  #
+  # Associations
+  has_many :microposts,
+           dependent: :destroy # Destroy associated user microposts
+
+  #
+  #
+  #
   attr_accessor :remember_token,
                 :activation_token,
                 :reset_token
@@ -114,6 +123,13 @@ class User < ApplicationRecord
   # Returns true if a password reset has expired
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  #
+  # Defines a proto-feed
+  # See 'Following Users' for the full implementation
+  def feed
+    Micropost.where('user_id =  ?', id)
   end
 
   #
