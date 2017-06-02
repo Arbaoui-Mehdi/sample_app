@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'awesome_print'
 
 class PasswordResetsTest < ActionDispatch::IntegrationTest
 

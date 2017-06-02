@@ -8,14 +8,16 @@ class UsersController < ApplicationController
                     :index,
                     :edit,
                     :update,
-                    :destroy
+                    :destroy,
+                    :following,
+                    :followers
                 ]
+
   before_action :correct_user,
-                only: [
-                    :edit,
-                    :update
-                ]
-  before_action :admin_user, only: :destroy
+                only: [:edit, :update]
+
+  before_action :admin_user,
+                only: :destroy
 
   #
   #
@@ -79,6 +81,26 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = 'User Deleted'
     redirect_to users_url
+  end
+
+  #
+  #
+  # Followers
+  def following
+    @title = 'Following'
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  #
+  #
+  # Followers
+  def followers
+    @title = 'Followers'
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   #

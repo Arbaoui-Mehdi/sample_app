@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave', '~> 1.1.0'
 gem 'mini_magick'
@@ -27,7 +26,6 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'sqlite3'
-
 end
 
 group :development do
@@ -36,9 +34,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'guard'
-  gem 'awesome_print'
   gem 'brakeman', :require => false
-
 end
 
 group :test do
@@ -46,6 +42,7 @@ group :test do
   gem 'mini_backtrace'
   gem 'guard-minitest'
   gem 'rails-controller-testing'
+  gem 'awesome_print'
 end
 
 group :production do

@@ -2,14 +2,6 @@ Rails.application.routes.draw do
 
   #
   #
-  #
-  get 'password_resets/new'
-  get 'password_resets/edit'
-  get 'account_activations/edit'
-  get 'sessions/new'
-
-  #
-  #
   # Home Page
   root             'static_pages#home'
 
@@ -24,7 +16,15 @@ Rails.application.routes.draw do
   #
   # User Sign Up
   get 'signup'  => 'users#new'
-  resources :users
+
+  #
+  #
+  # Users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   #
   #
@@ -48,5 +48,10 @@ Rails.application.routes.draw do
   #
   # Microposts
   resources :microposts, only: [:create, :destroy]
+
+  #
+  #
+  # Relationships
+  resources :relationships, only: [:create, :destroy]
 
 end

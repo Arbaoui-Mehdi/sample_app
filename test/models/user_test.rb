@@ -14,6 +14,9 @@ class UserTest < ActiveSupport::TestCase
     )
   end
 
+  #
+  #
+  #
   test 'should be valid' do
     assert @user.valid?
   end
@@ -109,6 +112,54 @@ class UserTest < ActiveSupport::TestCase
     assert_difference 'Micropost.count', -1 do
       @user.destroy
     end
+  end
+
+  #
+  #
+  # Follow and Unfollow
+  test 'should follow and unfollow a user' do
+   michael  = users(:michael)
+   archer   = users(:archer)
+
+   # Michael Following Archer
+   assert_not michael.following?(archer)
+   michael.follow(archer)
+   assert michael.following?(archer)
+
+   # Archer followers should include Michael
+   assert archer.followers.include?(michael)
+
+   # Michael Unfollow Archer
+   michael.unfollow(archer)
+   assert_not michael.following?(archer)
+  end
+
+  #
+  #
+  #
+  test 'feed should have the right posts' do
+    michael = users(:michael)
+    archer  = users(:archer)
+    lana    = users(:lana)
+
+    #
+    # Posts from followed user(s)
+    lana.microposts.each do |post_following|
+      assert michael.feed.include?(post_following)
+    end
+
+    #
+    # Posts from self
+    michael.microposts.each do |post_self|
+      assert michael.feed.include?(post_self)
+    end
+
+    #
+    # Posts from unfollowed user(s)
+    archer.microposts.each do |post_unfollowed|
+      assert_not michael.feed.include?(post_unfollowed)
+    end
+
   end
 
 end
